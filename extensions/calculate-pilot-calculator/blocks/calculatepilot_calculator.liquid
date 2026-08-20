@@ -1,0 +1,61 @@
+{% assign calculator_slug = block.settings.calculator_slug | strip %}
+
+{% if calculator_slug == blank %}
+  {% assign calculator_slug = app.metafields.calculatepilot.selected_calculator.value | strip %}
+{% endif %}
+{% assign calculator_title = block.settings.heading | strip %}
+
+{% if calculator_title == blank %}
+  {% assign calculator_title = 'CalculatePilot Calculator' %}
+{% endif %}
+
+<div class="calculatepilot-calculator" {{ block.shopify_attributes }}>
+  {% if calculator_slug != blank %}
+    <iframe
+      src="https://www.calculatepilot.com/embed/{{ calculator_slug | escape }}.html"
+      title="{{ calculator_title | escape }}"
+      width="100%"
+      height="{{ block.settings.calculator_height }}"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      style="display:block;width:100%;max-width:100%;border:0;"
+    ></iframe>
+  {% else %}
+    {% if request.design_mode %}
+      <div style="padding:20px;border:1px dashed #cccccc;text-align:center;">
+        Select a CalculatePilot calculator in the block settings.
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "CalculatePilot Calculator",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Accessible title",
+      "default": "CalculatePilot Calculator"
+    },
+    {
+      "type": "text",
+      "id": "calculator_slug",
+      "label": "Calculator slug",
+      "info": "Enter the calculator slug from the CalculatePilot library."
+    },
+    {
+      "type": "range",
+      "id": "calculator_height",
+      "label": "Calculator height",
+      "min": 300,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 600
+    }
+  ]
+}
+{% endschema %}
