@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "b75bc1447309d19a739549a4a75e5f60"
-application_url = "https://example.com"
+application_url = "https://calculatepilot-shopify-app-production.up.railway.app"
 embedded = true
 name = "CalculatePilot"
 
@@ -45,8 +45,11 @@ api_version = "2026-10"
   topics = [ "app/scopes_update" ]
 
 [auth]
-redirect_urls = [ "https://example.com/api/auth" ]
+redirect_urls = [
+  "https://calculatepilot-shopify-app-production.up.railway.app/auth/callback",
+  "https://calculatepilot-shopify-app-production.up.railway.app/auth/shopify/callback",
+  "https://calculatepilot-shopify-app-production.up.railway.app/api/auth/callback"
+]
 
 [build]
-include_config_on_deploy = true
 automatically_update_urls_on_dev = true
