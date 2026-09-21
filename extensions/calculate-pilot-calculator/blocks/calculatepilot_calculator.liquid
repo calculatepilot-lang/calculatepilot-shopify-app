@@ -12,10 +12,12 @@
   {% assign calculator_title = 'CalculatePilot Calculator' %}
 {% endif %}
 
+{% assign calculator_slug = calculator_path | split: '/' | last %}
+
 <div class="calculatepilot-calculator" {{ block.shopify_attributes }}>
   {% if calculator_path != blank %}
     <iframe
-      src="https://www.calculatepilot.com/{{ calculator_path | escape }}.html?embed=1"
+      src="https://www.calculatepilot.com/embed/{{ calculator_slug | escape }}.html"
       title="{{ calculator_title | escape }}"
       width="100%"
       height="{{ block.settings.calculator_height }}"
