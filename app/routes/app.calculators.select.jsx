@@ -90,7 +90,7 @@ export default function CalculatorSelectionRoute() {
   const { themeEditorUrl, calculatorName } = useLoaderData();
 
   useEffect(() => {
-    window.top.location.assign(themeEditorUrl);
+    window.open(themeEditorUrl, "_top");
   }, [themeEditorUrl]);
 
   return (
